@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MD Tanvir Israk Moon — Web Developer & Robotics Technologist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-page: #f9f7f2;
+            --bg-page-alt: #f3f0e9;
+            --bg-terminal: #1c1c1c;
+            --bg-terminal-header: #2a2a2a;
+            --bg-card: #ffffff;
+            --bg-card-hover: #fefefe;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #7a7a7a;
+            --text-on-dark: #dcdcdc;
+            --text-on-dark-muted: #a0a0a0;
+            --red: #b83838;
+            --red-soft: #c94a4a;
+            --red-muted: #8b2a2a;
+            --green: #3d7a4f;
+            --green-soft: #4a8c5c;
+            --green-muted: #2a5c38;
+            --yellow-dot: #d4a843;
+            --border-light: #e2ddd5;
+            --border-medium: #d5cfc6;
+            --border-dark: #3a3a3a;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.13);
+            --shadow-terminal: 0 8px 32px rgba(0, 0, 0, 0.22);
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+            --font-body: 'Inter', system-ui, sans-serif;
+            --transition-fast: 0.18s ease;
+            --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-spring: 0.4s cubic-bezier(0.34, 1.3, 0.64, 1);
+            --max-width: 1120px;
+            --header-height: 56px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--header-height);
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-page);
+            color: var(--text-primary);
+            line-height: 1.65;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.018) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.018) 1px, transparent 1px);
+            background-size: 32px 32px;
+            background-position: -1px -1px;
+            background-attachment: fixed;
+        }
+
+        /* ========== HEADER ========== */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(249, 247, 242, 0.88);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border-light);
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            padding: 0 1.25rem;
+            transition: all var(--transition-fast);
+        }
+        .site-header.scrolled {
+            background: rgba(249, 247, 242, 0.96);
+            border-bottom-color: var(--border-medium);
+            box-shadow: var(--shadow-sm);
+        }
+        .header-inner {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+            white-space: nowrap;
+            z-index: 101;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .logo .prompt-symbol {
+            color: var(--green);
+            font-weight: 600;
+        }
+        .logo .cursor-inline {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            background: var(--red);
+            animation: blinkCursor 1s step-end infinite;
+            vertical-align: middle;
+            margin-left: 1px;
+            border-radius: 1px;
+        }
+        @keyframes blinkCursor {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+        .nav-links {
+            display: flex;
+            gap: 0.15rem;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            font-weight: 500;
+            padding: 0.4rem 0.75rem;
+            border-radius: 4px;
+            transition: all var(--transition-fast);
+            white-space: nowrap;
+            letter-spacing: 0.01em;
+            position: relative;
+        }
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 0.75rem;
+            right: 0.75rem;
+            height: 1.5px;
+            background: var(--red);
+            transform: scaleX(0);
+            transition: transform var(--transition-fast);
+            transform-origin: left;
+        }
+        .nav-links a:hover,
+        .nav-links a:focus-visible {
+            color: var(--text-primary);
+            background: rgba(0, 0, 0, 0.03);
+        }
+        .nav-links a:hover::before,
+        .nav-links a:focus-visible::before {
+            transform: scaleX(1);
+        }
+        .nav-links a:focus-visible {
+            outline: 2px solid var(--red);
+            outline-offset: 2px;
+        }
+        .hamburger {
+            display: none;
+            background: none;
+            border: 1.5px solid var(--border-medium);
+            cursor: pointer;
+            padding: 0.4rem 0.5rem;
+            z-index: 101;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            border-radius: 4px;
+            transition: all var(--transition-fast);
+            font-family: var(--font-mono);
+        }
+        .hamburger:hover {
+            border-color: var(--text-secondary);
+            background: rgba(0, 0, 0, 0.03);
+        }
+        .hamburger:focus-visible {
+            outline: 2px solid var(--red);
+            outline-offset: 2px;
+        }
+
+        /* ========== SECTIONS ========== */
+        .section {
+            position: relative;
+            z-index: 1;
+            padding: 3.5rem 1.25rem;
+        }
+        .section-alt {
+            background: var(--bg-page-alt);
+        }
+        .section-dark {
+            background: var(--bg-terminal);
+            color: var(--text-on-dark);
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+        .section-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+        .section-label {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 0.5rem;
+        }
+        .section-label::before {
+            content: '// ';
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+        .section-dark .section-label {
+            color: var(--red-soft);
+        }
+        .section-dark .section-label::before {
+            color: var(--text-on-dark-muted);
+        }
+        .section-title {
+            font-family: var(--font-mono);
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.03em;
+            margin-bottom: 0.75rem;
+            line-height: 1.25;
+        }
+        .section-dark .section-title {
+            color: #e8e8e8;
+        }
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            max-width: 560px;
+            margin-bottom: 2rem;
+            font-family: var(--font-body);
+            line-height: 1.55;
+        }
+        .section-dark .section-subtitle {
+            color: var(--text-on-dark-muted);
+        }
+
+        /* ========== REVEAL ========== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 {
+            transition-delay: 0.08s;
+        }
+        .reveal-delay-2 {
+            transition-delay: 0.16s;
+        }
+        .reveal-delay-3 {
+            transition-delay: 0.24s;
+        }
+        .reveal-delay-4 {
+            transition-delay: 0.32s;
+        }
+
+        /* ========== HERO (DARK TERMINAL) ========== */
+        .hero {
+            min-height: calc(100vh - var(--header-height));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-terminal);
+            position: relative;
+            overflow: hidden;
+            padding: 2.5rem 1.25rem 4rem;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08) 30%, rgba(255, 255, 255, 0.08) 70%, transparent);
+        }
+        .hero-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 680px;
+            width: 100%;
+        }
+        .hero-terminal {
+            background: #141414;
+            border: 1px solid #333;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-terminal);
+        }
+        .hero-terminal-header {
+            background: #222;
+            padding: 0.6rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            border-bottom: 1px solid #333;
+        }
+        .hero-terminal-header .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .dot-red {
+            background: #c94a4a;
+        }
+        .dot-yellow {
+            background: #d4a843;
+        }
+        .dot-green {
+            background: #4a8c5c;
+        }
+        .hero-terminal-header .title-bar-text {
+            flex: 1;
+            text-align: center;
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            color: #888;
+            letter-spacing: 0.04em;
+        }
+        .hero-terminal-body {
+            padding: 1.8rem 1.5rem 2rem;
+            font-family: var(--font-mono);
+        }
+        .hero-line {
+            display: flex;
+            gap: 0.4rem;
+            margin-bottom: 0.35rem;
+            flex-wrap: wrap;
+            align-items: baseline;
+        }
+        .hero-prompt {
+            color: var(--green-soft);
+            font-weight: 600;
+            white-space: nowrap;
+            font-size: 0.9rem;
+        }
+        .hero-command {
+            color: #e0e0e0;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .hero-output {
+            color: #d0d0d0;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            margin-bottom: 0.6rem;
+            padding-left: 0.2rem;
+        }
+        .hero-output .highlight-name {
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.3rem;
+            letter-spacing: -0.02em;
+            display: inline-block;
+            margin: 0.25rem 0;
+        }
+        .hero-output .highlight-red {
+            color: var(--red-soft);
+            font-weight: 500;
+        }
+        .hero-output .highlight-green {
+            color: var(--green-soft);
+            font-weight: 500;
+        }
+        .hero-line-cursor {
+            display: flex;
+            gap: 0.4rem;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        .hero-cursor {
+            display: inline-block;
+            width: 9px;
+            height: 18px;
+            background: var(--red-soft);
+            animation: blinkCursor 1s step-end infinite;
+            border-radius: 1px;
+        }
+        .btn-terminal {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-mono);
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 0.7rem 1.4rem;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+            border: 1.5px solid var(--green-soft);
+            background: transparent;
+            color: var(--green-soft);
+            transition: all var(--transition-smooth);
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+        }
+        .btn-terminal:hover {
+            background: rgba(74, 140, 92, 0.1);
+            border-color: #5aac6c;
+            color: #5aac6c;
+            transform: translateY(-1px);
+        }
+        .btn-terminal:focus-visible {
+            outline: 2px solid var(--red-soft);
+            outline-offset: 3px;
+        }
+
+        /* ========== PROJECTS ========== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.1rem;
+        }
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: all var(--transition-smooth);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--border-medium);
+        }
+        .project-card-header {
+            background: #f5f3ee;
+            padding: 0.55rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            border-bottom: 1px solid var(--border-light);
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            color: var(--text-muted);
+            letter-spacing: 0.03em;
+        }
+        .project-card-header .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        .project-card-body {
+            padding: 1.3rem 1.2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+        }
+        .project-card-body .card-icon {
+            font-size: 1.7rem;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-sm);
+            background: #f9f7f2;
+            flex-shrink: 0;
+            border: 1px solid var(--border-light);
+        }
+        .project-card-body .card-icon .fa-eye,
+        .project-card-body .card-icon,
+        .project-card-body .card-icon .fa-bag-shopping {
+            color: var(--red);
+        }
+        .fa-gamepad{
+            color: var(--yellow-dot);
+        }
+        .project-card-body .card-icon, .fa-school,
+        .project-card-body .card-icon .fa-shop,
+        .project-card-body .card-icon .fa-opencart {
+            color: var(--green);
+        }
+        .project-card-body h3 {
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+        .project-card-body p {
+            color: var(--text-secondary);
+            font-size: 0.84rem;
+            line-height: 1.55;
+            flex-grow: 1;
+            font-family: var(--font-body);
+        }
+        .project-card-body .tag-row {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .tag {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.66rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 0.28rem 0.6rem;
+            border-radius: 3px;
+            border: 1px solid;
+        }
+        .tag-web {
+            border-color: #d4a0a0;
+            color: var(--red-muted);
+            background: rgba(184, 56, 56, 0.04);
+        }
+        .tag-robo {
+            border-color: #a0c8a8;
+            color: var(--green-muted);
+            background: rgba(61, 122, 79, 0.04);
+        }
+
+        /* ========== ACHIEVEMENTS ========== */
+        .achievements-scroll {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 0.75rem;
+            scrollbar-width: thin;
+            scrollbar-color: #ccc transparent;
+        }
+        .achievements-scroll::-webkit-scrollbar {
+            height: 4px;
+        }
+        .achievements-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .achievements-scroll::-webkit-scrollbar-thumb {
+            background: #d0ccc4;
+            border-radius: 10px;
+        }
+        .achievement-card {
+            flex: 0 0 280px;
+            scroll-snap-align: start;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            padding: 1.3rem;
+            transition: all var(--transition-smooth);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            position: relative;
+        }
+        .achievement-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--border-medium);
+        }
+        .achievement-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--red);
+            border-radius: var(--radius-md) var(--radius-md) 0 0;
+            opacity: 0;
+            transition: opacity var(--transition-fast);
+        }
+        .achievement-card:hover::before {
+            opacity: 1;
+        }
+        .achievement-card .ach-icon {
+            font-size: 1.5rem;
+            color: var(--red);
+            font-family: var(--font-mono);
+        }
+        .achievement-card h4 {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
+        }
+        .achievement-card p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.45;
+            font-family: var(--font-body);
+        }
+
+        /* ========== GALLERY ========== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.7rem;
+            grid-auto-rows: 150px;
+        }
+        .gallery-item {
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            background: #e8e4dc;
+            transition: all var(--transition-smooth);
+            border: 2px solid transparent;
+        }
+        .gallery-item:hover {
+            transform: scale(1.04);
+            border-color: var(--red);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+            z-index: 2;
+        }
+        .gallery-item:focus-visible {
+            outline: 3px solid var(--red);
+            outline-offset: 2px;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform var(--transition-smooth);
+        }
+        .gallery-item:hover img {
+            transform: scale(1.06);
+        }
+        .gallery-item.portrait {
+            grid-row: span 2;
+        }
+        .gallery-item.landscape {
+            grid-row: span 1;
+        }
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 0.5rem 0.65rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: #fff;
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity var(--transition-fast);
+            pointer-events: none;
+            letter-spacing: 0.02em;
+        }
+        .gallery-item:hover .gallery-caption {
+            opacity: 1;
+        }
+
+        /* ========== LIGHTBOX ========== */
+        .lightbox-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 999;
+            background: rgba(10, 10, 10, 0.94);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+        .lightbox-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .lightbox-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: var(--radius-sm);
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.7);
+            object-fit: contain;
+            border: 1px solid #444;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: -48px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid #555;
+            color: #ddd;
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+        }
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #888;
+            color: #fff;
+        }
+        .lightbox-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #555;
+            color: #ddd;
+            font-size: 1rem;
+            width: 38px;
+            height: 38px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            font-family: var(--font-mono);
+        }
+        .lightbox-arrow:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #888;
+            color: #fff;
+        }
+        .lightbox-arrow.prev {
+            left: -50px;
+        }
+        .lightbox-arrow.next {
+            right: -50px;
+        }
+
+        /* ========== ROBOTICS ========== */
+        .robotics-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        .robo-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: all var(--transition-smooth);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+        }
+        .robo-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--border-medium);
+        }
+        .robo-card-header {
+            background: #f5f3ee;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            border-bottom: 1px solid var(--border-light);
+            font-family: var(--font-mono);
+            font-size: 0.66rem;
+            color: var(--text-muted);
+            letter-spacing: 0.04em;
+        }
+        .robo-card-header .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        .robo-card-body {
+            padding: 1.2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+        .robo-card-body h3 {
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .robo-card-body h3 i {
+            color: var(--green);
+            font-size: 0.85rem;
+        }
+        .robo-card-body p {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            font-family: var(--font-body);
+        }
+        .robo-card-body .tech-tags {
+            display: flex;
+            gap: 0.35rem;
+            flex-wrap: wrap;
+        }
+        .tech-tag {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            padding: 0.22rem 0.5rem;
+            border-radius: 3px;
+            background: #f4f1eb;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-light);
+        }
+        .demo-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 80px;
+            background: #faf9f6;
+            border-radius: var(--radius-sm);
+            border: 1.5px dashed var(--border-medium);
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            gap: 0.45rem;
+            transition: all var(--transition-fast);
+            cursor: default;
+            letter-spacing: 0.02em;
+        }
+        .robo-card:hover .demo-placeholder {
+            border-color: var(--green);
+            color: var(--green);
+            background: rgba(61, 122, 79, 0.03);
+        }
+
+        /* ========== CONTACT ========== */
+        .contact-section {
+            text-align: center;
+            padding-bottom: 3rem;
+        }
+        .contact-terminal {
+            display: inline-block;
+            background: #141414;
+            border: 1px solid #333;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-terminal);
+            max-width: 500px;
+            width: 100%;
+            text-align: left;
+        }
+        .contact-terminal-header {
+            background: #222;
+            padding: 0.55rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            border-bottom: 1px solid #333;
+        }
+        .contact-terminal-body {
+            padding: 1.5rem;
+            font-family: var(--font-mono);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+            text-align: center;
+        }
+        .contact-email {
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--green-soft);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+            letter-spacing: -0.01em;
+            word-break: break-all;
+        }
+        .contact-email:hover {
+            color: #fff;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.04);
+            color: #bbb;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all var(--transition-smooth);
+            border: 1px solid #444;
+        }
+        .social-icons a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-color: #777;
+            transform: translateY(-2px);
+        }
+        .footer-copy {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: #777;
+            letter-spacing: 0.03em;
+        }
+
+        /* ========== MEDIA QUERIES ========== */
+        @media (min-width: 520px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .robotics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+                grid-auto-rows: 165px;
+                gap: 0.85rem;
+            }
+            .achievement-card {
+                flex: 0 0 300px;
+            }
+            .section {
+                padding: 4rem 1.5rem;
+            }
+            .section-title {
+                font-size: 1.9rem;
+            }
+            .hero-terminal-body {
+                padding: 2rem 1.8rem 2.2rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                gap: 0.1rem;
+            }
+            .nav-links a {
+                font-size: 0.76rem;
+                padding: 0.4rem 0.7rem;
+            }
+            .projects-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.2rem;
+            }
+            .robotics-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.2rem;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(4, 1fr);
+                grid-auto-rows: 175px;
+                gap: 0.9rem;
+            }
+            .achievements-scroll {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.1rem;
+                overflow-x: visible;
+                scroll-snap-type: none;
+                padding-bottom: 0;
+            }
+            .achievement-card {
+                flex: unset;
+                scroll-snap-align: unset;
+            }
+            .section {
+                padding: 5rem 2rem;
+            }
+            .section-title {
+                font-size: 2.2rem;
+            }
+            .hero-terminal-body {
+                padding: 2.4rem 2.2rem 2.6rem;
+            }
+            .hero-output .highlight-name {
+                font-size: 1.6rem;
+            }
+            .lightbox-arrow.prev {
+                left: -58px;
+            }
+            .lightbox-arrow.next {
+                right: -58px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.4rem;
+            }
+            .robotics-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.3rem;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(4, 1fr);
+                grid-auto-rows: 190px;
+                gap: 1rem;
+            }
+            .achievements-scroll {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 1.2rem;
+            }
+            .section {
+                padding: 6rem 2.5rem;
+            }
+            .section-title {
+                font-size: 2.4rem;
+            }
+            .hero-output .highlight-name {
+                font-size: 1.8rem;
+            }
+            .section-inner {
+                padding: 0 0.5rem;
+            }
+        }
+
+        @media (min-width: 1440px) {
+            .section-inner {
+                padding: 0 1rem;
+            }
+            .section-title {
+                font-size: 2.6rem;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(5, 1fr);
+                grid-auto-rows: 210px;
+            }
+            .projects-grid {
+                gap: 1.6rem;
+            }
+            .robotics-grid {
+                gap: 1.5rem;
+            }
+        }
+
+        /* Mobile nav */
+        @media (max-width: 767px) {
+            .nav-links {
+                position: fixed;
+                top: var(--header-height);
+                left: 0;
+                right: 0;
+                background: rgba(249, 247, 242, 0.97);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 0.8rem 1.25rem;
+                gap: 0.15rem;
+                border-bottom: 1px solid var(--border-medium);
+                transform: translateY(-120%);
+                transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 99;
+                box-shadow: var(--shadow-lg);
+            }
+            .nav-links.open {
+                transform: translateY(0);
+            }
+            .nav-links a {
+                display: block;
+                padding: 0.65rem 0.8rem;
+                font-size: 0.85rem;
+                border-radius: 4px;
+            }
+            .hamburger {
+                display: block;
+            }
+            .lightbox-arrow.prev {
+                left: 6px;
+            }
+            .lightbox-arrow.next {
+                right: 6px;
+            }
+            .lightbox-arrow {
+                width: 34px;
+                height: 34px;
+                font-size: 0.85rem;
+            }
+            .hero-terminal-body {
+                padding: 1.3rem 1rem 1.6rem;
+            }
+            .hero-prompt,
+            .hero-command {
+                font-size: 0.78rem;
+            }
+            .hero-output {
+                font-size: 0.8rem;
+            }
+            .hero-output .highlight-name {
+                font-size: 1.15rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+            .reveal {
+                transition: none;
+            }
+            .hero-cursor,
+            .cursor-inline {
+                animation: none;
+                opacity: 1;
+            }
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="site-header" id="site-header">
+        <div class="header-inner">
+            <a href="#hero" class="logo">
+                <span class="prompt-symbol">~/</span>moon<span class="cursor-inline" aria-hidden="true"></span>
+            </a>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <nav>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#projects">projects</a></li>
+                    <li><a href="#achievements">achievements</a></li>
+                    <li><a href="#gallery">gallery</a></li>
+                    <li><a href="#ongoing">Ongoing</a></li>
+                    <li><a href="#contact">contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="hero" id="hero">
+        <div class="hero-inner reveal">
+            <div class="hero-terminal">
+                <div class="hero-terminal-header">
+                    <span class="dot dot-red"></span>
+                    <span class="dot dot-yellow"></span>
+                    <span class="dot dot-green"></span>
+                    <span class="title-bar-text">moon@portfolio — bash — 80×24</span>
+                </div>
+                <div class="hero-terminal-body">
+                    <div class="hero-line">
+                        <span class="hero-prompt">$</span>
+                        <span class="hero-command">whoami</span>
+                    </div>
+                    <div class="hero-output">
+                        <span class="highlight-name">MD Tanvir Israk Moon</span>
+                    </div>
+                    <div class="hero-line">
+                        <span class="hero-prompt">$</span>
+                        <span class="hero-command">cat ./tagline.txt</span>
+                    </div>
+                    <div class="hero-output">
+                        Web Developer · Graphic Designer · Video Editor ·<br>
+                        Artist . Young Researcher · <span class="highlight-green">IT &amp; Robotics Technologist</span>
+                    </div>
+                    <div class="hero-line-cursor">
+                        <span class="hero-prompt">$</span>
+                        <span class="hero-command">./explore_work</span>
+                        <span class="hero-cursor" aria-hidden="true"></span>
+                    </div>
+                    <div style="margin-top: 1.2rem;">
+                        <a href="#projects" class="btn-terminal">
+                            <i class="fa-solid fa-arrow-right"></i> Execute
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PROJECTS ==================== -->
+    <section class="section" id="projects">
+        <div class="section-inner">
+            <span class="section-label reveal">Projects</span>
+            <h2 class="section-title reveal reveal-delay-1">Websites</h2>
+            <p class="section-subtitle reveal reveal-delay-1">A curated selection spanning full‑stack applications and functional systems.</p>
+            <div class="projects-grid">
+                <article class="project-card reveal reveal-delay-3">
+                    <a href="https://github.com/Tanvir-Israk-moon/cara-ecommerce" style="text-decoration: none;">
+                        <div class="project-card-header">
+                            <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+                            &nbsp;Cara.com
+                        </div>
+                        <div class="project-card-body">
+                            <div class="card-icon"><i class="fa-solid fa-shop"></i></div>
+                            <h3>Cara E-commerce site</h3>
+                            <p>A responsive, modern online shopping platform. It features an intuitive, user-friendly interface optimized for multiple devices and includes core e-commerce pages like Home, Shop, Product Details, Cart, and Checkout. </p>
+                            <div class="tag-row"><span class="tag tag-robo">Web</span></div>
+                        </div>
+                    </a>
+                </article>
+                <article class="project-card reveal reveal-delay-4">
+                    <a href="https://tanvir-israk-moon.github.io/anon-store/" style="text-decoration: none;">
+                        <div class="project-card-header">
+                            <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+                            &nbsp;anon_store.fr
+                        </div>
+                        <div class="project-card-body">
+                            <div class="card-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+                            <h3>Anon Store</h3>
+                            <p> A fully responsive frontend e-commerce template wiyh clean, user-friendly interface. Express your unique identity with our premium collections, where modern elegance meets everyday affordability.</p>
+                            <div class="tag-row"><span class="tag tag-web">Web</span></div>
+                        </div>
+                    </a>
+                </article>
+                <article class="project-card reveal reveal-delay-4"> 
+                    <a href="https://myopenstore.lovable.app" style="text-decoration: none">                   
+                        <div class="project-card-header">
+                            <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+                            &nbsp;Open_store.app
+                        </div>
+                        <div class="project-card-body">
+                            <div class="card-icon"><i class="fa-brands fa-opencart"></i></div>
+                            <h3>Multi-Vendor MarketPlace</h3>
+                            <p>An vibed coded e-commerce platform where multiple independent sellers list and sell their goods or services under a single unified storefront.</p>
+                            <div class="tag-row"><span class="tag tag-robo">Vibe Coded</span></div>
+                        </div>
+                    </a>
+                </article>
+                <article class="project-card reveal reveal-delay-2">
+                    <a href="https://github.com/Tanvir-Israk-moon/Biometric-Attendance" style="text-decoration: none;">
+                        <div class="project-card-header">
+                            <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+                            &nbsp;Biometric_Attendance.py
+                        </div>
+                        <div class="project-card-body">
+                            <div class="card-icon"><i class="fa-solid fa-eye"></i></div>
+                            <h3>Biometric Attendance System</h3>
+                            <p>A biometric attendance system tracks when employees arrive and leave by scanning their unique biological or physical traits, such as fingerprints, facial features, or iris patterns.</p>
+                            <div class="tag-row"><span class="tag tag-web">System</span></div>
+                        </div>
+                    </a>
+                </article>
+                <article class="project-card reveal reveal-delay-2">
+                    <a href="https://tanvir-israk-moon.github.io/Flappy-Bird-Web-Game/" style="text-decoration: none;">
+                        <div class="project-card-header">
+                            <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+                            &nbsp;Flappy_Bird.webgl
+                        </div>
+                        <div class="project-card-body">
+                            <div class="card-icon"><i class="fa-solid fa-gamepad"></i></div>
+                            <h3>Flappy Bird Web Game</h3>
+                            <p>A browser-based, endless side-scrolling game where you control a bird by clicking, tapping, or pressing the spacebar to navigate through gaps in green pipes.</p>
+                            <div class="tag-row"><span class="tag tag-robo">Game</span></div>
+                        </div>
+                    </a>
+                </article>
+                <article class="project-card reveal reveal-delay-3">
+                    <a href="https://github.com/Tanvir-Israk-moon/School-Management" style="text-decoration: none;">
+                        <div class="project-card-header">
+                            <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+                            &nbsp;School_Management.php
+                        </div>
+                        <div class="project-card-body">
+                            <div class="card-icon"><i class="fa-solid fa-school"></i></div>
+                            <h3>School Management</h3>
+                            <p>An integrated software platform designed to centralize and automate a school's administrative, academic, and financial operations.</p>
+                            <div class="tag-row"><span class="tag tag-web">Web</span></div>
+                        </div>
+                    </a>
+                </article>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== ACHIEVEMENTS ==================== -->
+    <section class="section section-alt" id="achievements">
+        <div class="section-inner">
+            <span class="section-label reveal">Milestones</span>
+            <h2 class="section-title reveal reveal-delay-1">Achievements</h2>
+            <p class="section-subtitle reveal reveal-delay-1">Recognition from conferences, competitions, and the research community.</p>
+            <div class="achievements-scroll">
+                <div class="achievement-card reveal reveal-delay-2">
+                    <div class="ach-icon"><i class="fa-brands fa-digital-ocean"></i></div>
+                    <h4>Top 100 Entrepreneur Award</h4>
+                    <p>I made the Top 100 in the 𝐁𝐥𝐮𝐞 𝐎𝐜𝐞𝐚𝐧 𝐒𝐭𝐮𝐝𝐞𝐧𝐭 𝐄𝐧𝐭𝐫𝐞𝐩𝐫𝐞𝐧𝐞𝐮𝐫 𝐂𝐨𝐦𝐩𝐞𝐭𝐢𝐭𝐢𝐨𝐧 (the largest and most prestigious virtual pitch competition for high school students around the world) with my idea, Hydro-Skin.</p>
+                </div>
+                <div class="achievement-card reveal reveal-delay-2">
+                    <div class="ach-icon"><i class="fa-brands fa-space-awesome"></i></div>
+                    <h4>Citizen Scientist in NASA</h4>
+                    <p>Honored to take part in the 𝙄𝙣𝙩𝙚𝙧𝙣𝙖𝙩𝙞𝙤𝙣𝙖𝙡 𝘼𝙨𝙩𝙧𝙤𝙣𝙤𝙢𝙞𝙘𝙖𝙡 𝙎𝙚𝙖𝙧𝙘𝙝 𝘾𝙤𝙡𝙡𝙖𝙗𝙤𝙧𝙖𝙩𝙞𝙤𝙣 (𝙄𝘼𝙎𝘾) asteroid campaign with 𝗡𝗔𝗦𝗔 and 𝐏𝐚𝐧-𝐒𝐓𝐀𝐑𝐑𝐒, representing Team MoonByteX.</p>
+                </div>
+                <div class="achievement-card reveal reveal-delay-3">
+                    <div class="ach-icon"><i class="fa-solid fa-shield-cat"></i></div>
+                    <h4>Planetary Defender - DART mission</h4>
+                    <p>On May 6, 2025, I, Tanvir Israk Moon, was proudly recognized as a Planetary Defender through NASA - National Aeronautics and Space Administration 's groundbreaking Double Asteroid Redirection Test (DART) mission!</p>
+                </div>
+                <div class="achievement-card reveal reveal-delay-3">
+                    <div class="ach-icon"><i class="fa-solid fa-award"></i></div>
+                    <h4>2𝗇𝖽 𝖱𝗎𝗇𝗇𝖾𝗋-𝖴𝗉 𝗂𝗇 𝗍𝗁𝖾 𝖡𝖣𝖮𝖠𝖠</h4>
+                    <p>𝖦𝗈𝗍 2𝗇𝖽 𝖱𝗎𝗇𝗇𝖾𝗋-𝖴𝗉 𝗂𝗇 𝗍𝗁𝖾 💫 𝖡𝖣𝖮𝖠𝖠 -𝖠𝗌𝗍𝗋𝗈 𝖯𝗈𝗌𝗍𝖾𝗋 𝖢𝗈𝗆𝗉𝖾𝗍𝗂𝗍𝗂𝗈𝗇 2025 𝖺𝗍 𝗍𝗁𝖾 𝗇𝖺𝗍𝗂𝗈𝗇𝖺𝗅 𝗅𝖾𝗏𝖾𝗅!</p>
+                </div>
+                <div class="achievement-card reveal reveal-delay-4">
+                    <div class="ach-icon"><i class="fa-solid fa-certificate"></i></div>
+                    <h4>Official ICSC Ambassador</h4>
+                    <p> Contact: mtimoon(at)amb.icscompetition.org
+                    </p>
+                </div>
+                <div class="achievement-card reveal reveal-delay-4">
+                    <div class="ach-icon"><i class="fa-solid fa-robot"></i></div>
+                    <h4>Champion on Robotics Project Exhibition.</h4>
+                    <p>Winning Champion at the Khulna Division Chattrashibir Science Festival is an honor and a milestone for our team.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== GALLERY ==================== -->
+    <section class="section" id="gallery">
+        <div class="section-inner">
+            <span class="section-label reveal">Visual Journal</span>
+            <h2 class="section-title reveal reveal-delay-1">Art &amp; Photos</h2>
+            <p class="section-subtitle reveal reveal-delay-1">A glimpse into the workshop, the lab, and the world through my lens. Click any image to expand.</p>
+            <div class="gallery-grid" id="gallery-grid">
+                <div class="gallery-item landscape" data-src="https://www.facebook.com/photo.php?fbid=122206181516306253&set=pb.61559187613138.-2207520000&type=3" data-caption="prototype_assembly_v2.jpg">
+                    <img src="https://picsum.photos/400/260?random=11" alt="Prototype assembly of soft gripper v2" loading="lazy">
+                    <span class="gallery-caption">prototype_assembly_v2.jpg</span>
+                </div>
+                <div class="gallery-item portrait" data-src="https://picsum.photos/500/800?random=21" data-caption="soldering_session.png">
+                    <img src="https://picsum.photos/260/400?random=21" alt="Late-night soldering session" loading="lazy">
+                    <span class="gallery-caption">soldering_session.png</span>
+                </div>
+                <div class="gallery-item landscape" data-src="https://picsum.photos/800/500?random=31" data-caption="ur5_trajectory.tiff">
+                    <img src="https://picsum.photos/400/260?random=31" alt="UR5 arm mid-trajectory" loading="lazy">
+                    <span class="gallery-caption">ur5_trajectory.tiff</span>
+                </div>
+                <div class="gallery-item landscape" data-src="https://picsum.photos/800/500?random=41" data-caption="swarm_test_6drones.raw">
+                    <img src="https://picsum.photos/400/260?random=41" alt="Swarm test with 6 nano-drones" loading="lazy">
+                    <span class="gallery-caption">swarm_test_6drones.raw</span>
+                </div>
+                <div class="gallery-item portrait" data-src="https://picsum.photos/500/800?random=51" data-caption="circuit_macro.heic">
+                    <img src="https://picsum.photos/260/400?random=51" alt="Circuit board macro photograph" loading="lazy">
+                    <span class="gallery-caption">circuit_macro.heic</span>
+                </div>
+                <div class="gallery-item landscape" data-src="https://picsum.photos/800/500?random=61" data-caption="icra_demo_setup.jpg">
+                    <img src="https://picsum.photos/400/260?random=61" alt="Conference demo setup at ICRA 2025" loading="lazy">
+                    <span class="gallery-caption">icra_demo_setup.jpg</span>
+                </div>
+                <div class="gallery-item landscape" data-src="https://picsum.photos/800/500?random=71" data-caption="lab_sunset.png">
+                    <img src="https://picsum.photos/400/260?random=71" alt="Sunset over the robotics lab" loading="lazy">
+                    <span class="gallery-caption">lab_sunset.png</span>
+                </div>
+                <div class="gallery-item portrait" data-src="https://picsum.photos/500/800?random=81" data-caption="planetary_gear.stl">
+                    <img src="https://picsum.photos/260/400?random=81" alt="3D-printed planetary gear" loading="lazy">
+                    <span class="gallery-caption">planetary_gear.stl</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== ROBOTICS ==================== -->
+    <section class="section section-alt" id="ongoing">
+        <div class="section-inner">
+            <span class="section-label reveal">It's a ongoing section. Stay tuned to see the result</span>
+            <h2 class="section-title reveal reveal-delay-1">Ongoing Projects</h2>
+            <p class="section-subtitle reveal reveal-delay-1">Hands‑on work with embedded systems, control algorithms, and real‑world deployment.</p>
+            <div class="robotics-grid">
+                <div class="robo-card reveal reveal-delay-2">
+                    <div class="robo-card-header">
+                        <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+                        &nbsp;prosthetic_hand/
+                    </div>
+                    <div class="robo-card-body">
+                        <h3><i class="fa-solid fa-hand"></i> Adaptive Prosthetic Hand</h3>
+                        <p>EMG‑controlled prosthetic with real‑time grip force feedback. Trained on 10,000+ gesture samples.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Arduino</span><span class="tech-tag">TensorFlow Lite</span><span class="tech-tag">ROS</span>
+                        </div>
+                        <div class="demo-placeholder"><i class="fa-solid fa-circle-play"></i> demo_clip.mp4</div>
+                    </div>
+                </div>
+                <div class="robo-card reveal reveal-delay-2">
+                    <div class="robo-card-header">
+                        <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+                        &nbsp;rover_auto/
+                    </div>
+                    <div class="robo-card-body">
+                        <h3><i class="fa-solid fa-car-side"></i> Autonomous Rover</h3>
+                        <p>GPS‑waypoint navigation with LiDAR obstacle avoidance. Tested across 5 km of off‑road terrain.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Raspberry Pi</span><span class="tech-tag">ROS 2</span><span class="tech-tag">SLAM</span>
+                        </div>
+                        <div class="demo-placeholder"><i class="fa-solid fa-circle-play"></i> demo_clip.mp4</div>
+                    </div>
+                </div>
+                <div class="robo-card reveal reveal-delay-3">
+                    <div class="robo-card-header">
+                        <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+                        &nbsp;swim_bot/
+                    </div>
+                    <div class="robo-card-body">
+                        <h3><i class="fa-solid fa-fish"></i> Soft Swimming Robot</h3>
+                        <p>Biomimetic underwater robot using silicone actuators. Achieves 0.4 m/s with silent propulsion.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Arduino</span><span class="tech-tag">Silicone Casting</span><span class="tech-tag">IMU</span>
+                        </div>
+                        <div class="demo-placeholder"><i class="fa-solid fa-circle-play"></i> demo_clip.mp4</div>
+                    </div>
+                </div>
+                <div class="robo-card reveal reveal-delay-3">
+                    <div class="robo-card-header">
+                        <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+                        &nbsp;balance_bot/
+                    </div>
+                    <div class="robo-card-body">
+                        <h3><i class="fa-solid fa-arrows-spin"></i> Self‑Balancing Platform</h3>
+                        <p>Two‑wheeled balancing robot with PID control and remote teleop via WebSockets.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">ESP32</span><span class="tech-tag">PID Control</span><span class="tech-tag">MPU6050</span>
+                        </div>
+                        <div class="demo-placeholder"><i class="fa-solid fa-circle-play"></i> demo_clip.mp4</div>
+                    </div>
+                </div>
+                <div class="robo-card reveal reveal-delay-4">
+                    <div class="robo-card-header">
+                        <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+                        &nbsp;visual_servo/
+                    </div>
+                    <div class="robo-card-body">
+                        <h3><i class="fa-solid fa-eye"></i> Visual Servoing Arm</h3>
+                        <p>6‑DOF arm tracking colored objects in real time using OpenCV and inverse kinematics.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">OpenCV</span><span class="tech-tag">Python</span><span class="tech-tag">ROS</span>
+                        </div>
+                        <div class="demo-placeholder"><i class="fa-solid fa-circle-play"></i> demo_clip.mp4</div>
+                    </div>
+                </div>
+                <div class="robo-card reveal reveal-delay-4">
+                    <div class="robo-card-header">
+                        <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+                        &nbsp;planter_bot/
+                    </div>
+                    <div class="robo-card-body">
+                        <h3><i class="fa-solid fa-seedling"></i> Precision Planter Bot</h3>
+                        <p>Agricultural robot for seed placement with sub‑centimeter accuracy using RTK‑GPS.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">RTK‑GPS</span><span class="tech-tag">Arduino</span><span class="tech-tag">Stepper Motors</span>
+                        </div>
+                        <div class="demo-placeholder"><i class="fa-solid fa-circle-play"></i> demo_clip.mp4</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CONTACT ==================== -->
+    <section class="section section-dark contact-section" id="contact">
+        <div class="section-inner">
+            <span class="section-label reveal">Get In Touch</span>
+            <h2 class="section-title reveal reveal-delay-1">Let's Collaborate</h2>
+            <p class="section-subtitle reveal reveal-delay-1" style="margin-left:auto;margin-right:auto;">
+                Open to collaborations, consulting, and speaking invitations.
+            </p>
+            <div class="contact-terminal reveal reveal-delay-2">
+                <div class="contact-terminal-header">
+                    <span class="dot dot-red"></span>
+                    <span class="dot dot-yellow"></span>
+                    <span class="dot dot-green"></span>
+                    <span style="flex:1;text-align:center;font-family:var(--font-mono);font-size:0.68rem;color:#888;letter-spacing:0.04em;">contact — ssh</span>
+                </div>
+                <div class="contact-terminal-body">
+                    <a href="mailto:tanvirisrakmoon@gmail.com" class="contact-email">
+                        <i class="fa-solid fa-envelope"></i>&nbsp; tanvirisrakmoon@gmail.com
+                    </a>
+                    <div class="social-icons">
+                        <a href="https://github.com/Tanvir-Israk-moon" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Twitter / X" target="_blank"><i class="fa-sharp fa-solid fa-x"></i></a>
+                        <a href="https://www.facebook.com/tanvirismoon/" aria-label="Facebook" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="https://www.youtube.com/@TanvirIsMoon" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                    <p class="footer-copy">© 2026 Tanvir_Is_Moon — All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== LIGHTBOX ==================== -->
+    <div class="lightbox-overlay" id="lightbox-overlay" aria-hidden="true" role="dialog" aria-label="Image lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightbox-close" aria-label="Close lightbox"><i class="fa-solid fa-xmark"></i></button>
+            <button class="lightbox-arrow prev" id="lightbox-prev" aria-label="Previous image"><i class="fa-solid fa-chevron-left"></i></button>
+            <img src="" alt="" id="lightbox-img">
+            <button class="lightbox-arrow next" id="lightbox-next" aria-label="Next image"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const header = document.getElementById('site-header');
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('nav-links');
+            const allNavAnchors = navLinks.querySelectorAll('a');
+            const galleryGrid = document.getElementById('gallery-grid');
+            const lightboxOverlay = document.getElementById('lightbox-overlay');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxClose = document.getElementById('lightbox-close');
+            const lightboxPrev = document.getElementById('lightbox-prev');
+            const lightboxNext = document.getElementById('lightbox-next');
+
+            const galleryItems = Array.from(galleryGrid.querySelectorAll('.gallery-item'));
+            const galleryData = galleryItems.map(item => ({
+                src: item.getAttribute('data-src'),
+                caption: item.getAttribute('data-caption'),
+                alt: item.querySelector('img')?.getAttribute('alt') || ''
+            }));
+            let currentLightboxIndex = 0;
+
+            function closeNav() {
+                navLinks.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+                hamburger.querySelector('i').className = 'fa-solid fa-bars';
+            }
+
+            function openNav() {
+                navLinks.classList.add('open');
+                hamburger.setAttribute('aria-expanded', 'true');
+                hamburger.querySelector('i').className = 'fa-solid fa-xmark';
+            }
+
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.contains('open') ? closeNav() : openNav();
+            });
+
+            allNavAnchors.forEach(anchor => {
+                anchor.addEventListener('click', () => {
+                    if (navLinks.classList.contains('open')) closeNav();
+                });
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+                    closeNav();
+                    hamburger.focus();
+                }
+            });
+
+            document.addEventListener('click', (e) => {
+                if (navLinks.classList.contains('open') &&
+                    !navLinks.contains(e.target) &&
+                    !hamburger.contains(e.target)) {
+                    closeNav();
+                }
+            });
+
+            function updateHeaderScroll() {
+                header.classList.toggle('scrolled', window.scrollY > 30);
+            }
+            window.addEventListener('scroll', updateHeaderScroll, { passive: true });
+            updateHeaderScroll();
+
+            const revealEls = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { root: null, rootMargin: '0px 0px -36px 0px', threshold: 0.1 });
+
+            revealEls.forEach(el => revealObserver.observe(el));
+
+            function openLightbox(index) {
+                if (index < 0 || index >= galleryData.length) return;
+                currentLightboxIndex = index;
+                const data = galleryData[index];
+                lightboxImg.src = data.src;
+                lightboxImg.alt = data.alt;
+                lightboxOverlay.classList.add('active');
+                lightboxOverlay.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+                lightboxClose.focus();
+            }
+
+            function closeLightbox() {
+                lightboxOverlay.classList.remove('active');
+                lightboxOverlay.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+                lightboxImg.src = '';
+                const activeItem = galleryItems[currentLightboxIndex];
+                if (activeItem) activeItem.focus({ preventScroll: true });
+            }
+
+            function showPrev() {
+                openLightbox((currentLightboxIndex - 1 + galleryData.length) % galleryData.length);
+            }
+
+            function showNext() {
+                openLightbox((currentLightboxIndex + 1) % galleryData.length);
+            }
+
+            galleryItems.forEach((item, index) => {
+                item.addEventListener('click', () => openLightbox(index));
+                item.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openLightbox(index);
+                    }
+                });
+            });
+
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightboxPrev.addEventListener('click', showPrev);
+            lightboxNext.addEventListener('click', showNext);
+            lightboxOverlay.addEventListener('click', (e) => {
+                if (e.target === lightboxOverlay) closeLightbox();
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (!lightboxOverlay.classList.contains('active')) return;
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') showPrev();
+                if (e.key === 'ArrowRight') showNext();
+            });
+
+            let touchStartX = 0;
+            lightboxOverlay.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+            lightboxOverlay.addEventListener('touchend', (e) => {
+                const diff = touchStartX - e.changedTouches[0].screenX;
+                if (Math.abs(diff) > 55) {
+                    diff > 0 ? showNext() : showPrev();
+                }
+            });
+
+            const sectionIds = ['hero', 'projects', 'achievements', 'gallery', 'robotics', 'contact'];
+            const navAnchorsMap = {};
+            sectionIds.forEach(id => {
+                const anchor = document.querySelector(`.nav-links a[href="#${id}"]`);
+                if (anchor) navAnchorsMap[id] = anchor;
+            });
+
+            function updateActiveNavLink() {
+                let currentId = 'hero';
+                const scrollPos = window.scrollY + window.innerHeight / 3;
+                for (const id of sectionIds) {
+                    const section = document.getElementById(id);
+                    if (!section) continue;
+                    const top = section.offsetTop;
+                    const bottom = top + section.offsetHeight;
+                    if (scrollPos >= top && scrollPos < bottom) {
+                        currentId = id;
+                        break;
+                    }
+                }
+                Object.values(navAnchorsMap).forEach(a => {
+                    a.style.color = '';
+                    a.style.background = '';
+                });
+                const activeAnchor = navAnchorsMap[currentId];
+                if (activeAnchor) {
+                    activeAnchor.style.color = '#1a1a1a';
+                    activeAnchor.style.background = 'rgba(0,0,0,0.04)';
+                }
+            }
+
+            window.addEventListener('scroll', updateActiveNavLink, { passive: true });
+            updateActiveNavLink();
+
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 768 && navLinks.classList.contains('open')) closeNav();
+            });
+
+            console.log('%c> portfolio_loaded %c| %cstatus: OK',
+                'color:#4a8c5c;font-family:monospace;',
+                '',
+                'color:#888;font-family:monospace;');
+        })();
+    </script>
+</body>
+</html>
